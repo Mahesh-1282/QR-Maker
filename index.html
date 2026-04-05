@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium QR Code Maker</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-shape-1"></div>
+    <div class="background-shape-2"></div>
+    
+    <div class="container">
+        <header>
+            <h1><i class="fa-solid fa-qrcode"></i> QR Maker<span class="dot">.</span></h1>
+            <p>Generate & Save your QR codes instantly.</p>
+        </header>
+
+        <main>
+            <div class="input-section glass-panel">
+                <div class="input-group">
+                    <label for="qr-input">Enter Text or URL</label>
+                    <input type="text" id="qr-input" placeholder="e.g., https://google.com or 'Hello'">
+                </div>
+
+                <!-- Customization Panel -->
+                <div class="customization-panel">
+                    <div class="color-options">
+                        <div class="input-group-inline">
+                            <label for="qr-color">QR Color</label>
+                            <input type="color" id="qr-color" value="#000000">
+                        </div>
+                        <div class="input-group-inline">
+                            <label for="bg-color">Background</label>
+                            <input type="color" id="bg-color" value="#ffffff">
+                        </div>
+                    </div>
+                    
+                    <div class="style-options">
+                        <div class="input-group">
+                            <label for="dot-style">Dot Style</label>
+                            <select id="dot-style">
+                                <option value="square">Square</option>
+                                <option value="dots">Dots</option>
+                                <option value="rounded">Rounded</option>
+                                <option value="classy">Classy</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="corner-style">Corner Style</label>
+                            <select id="corner-style">
+                                <option value="square">Square</option>
+                                <option value="dot">Dot</option>
+                                <option value="extra-rounded">Extra Rounded</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="generate-btn" class="primary-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Generate QR Code
+                </button>
+            </div>
+
+            <div class="result-section glass-panel hidden" id="result-container">
+                <div id="qr-code-box"></div>
+                <div class="action-buttons">
+                    <button id="download-btn" class="secondary-btn">
+                        <i class="fa-solid fa-download"></i> Download
+                    </button>
+                    <button id="save-history-btn" class="outline-btn">
+                        <i class="fa-solid fa-bookmark"></i> Save
+                    </button>
+                </div>
+            </div>
+
+            <div class="history-section glass-panel">
+                <div class="history-header">
+                    <h2><i class="fa-solid fa-clock-rotate-left"></i> Recent History</h2>
+                    <button id="clear-history-btn" class="text-btn">Clear All</button>
+                </div>
+                <div id="history-list" class="history-list">
+                    <!-- History items will be populated here -->
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Powered by LocalStorage. No data is sent to any server.</p>
+        </footer>
+    </div>
+
+    <!-- QRCode Styling Library CDN -->
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
