@@ -104,10 +104,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Download QR Code
+    // Download QR Code & Specifications
     downloadBtn.addEventListener('click', () => {
         if (currentQRText) {
-            qrCode.download({ name: `QR_${new Date().getTime()}`, extension: "png" });
+            const timestamp = new Date().getTime();
+            
+            // 1. Download the QR Image
+            qrCode.download({ name: `QR_${timestamp}`, extension: "png" });
+
+            // 2. Download the Specifications (Details)
+            const detailsText = `QR CODE SPECIFICATIONS
+------------------------
+Date Generated : ${new Date().toLocaleString()}
+Content / URL  : ${currentQRText}
+
+--- DESIGN DETAILS ---
+QR Color       : ${colorQr.value}
+Background     : ${colorBg.value}
+Dot Style      : ${dotStyleSelect.value}
+Corner Style   : ${cornerStyleSelect.value}
+
+Generated via Premium QR Maker.
+`;
+            
+            // Create a Blob from the text
+            const blob = new Blob([detailsText], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            
+            // Create a hidden link to trigger the txt download
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `QR_Details_${timestamp}.txt`;
+            document.body.appendChild(a);
+            
+            // Small delay so browser doesn't block second download
+            setTimeout(() => {
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 500);
         }
     });
 
